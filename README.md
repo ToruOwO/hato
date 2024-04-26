@@ -147,7 +147,7 @@ If you find HATO or this codebase helpful in your research, please consider citi
 @article{lin2024learning,
   author={Lin, Toru and Zhang, Yu and Li, Qiyang and Qi, Haozhi and Yi, Brent and Levine, Sergey and Malik, Jitendra},
   title={Learning Visuotactile Skills with Two Multifingered Hands},
-  journal={arXiv},
+  journal={arXiv:2404.16823},
   year={2024}
 }
 ```
