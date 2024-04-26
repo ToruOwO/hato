@@ -7,8 +7,8 @@
 [Yu Zhang*](),
 [Qiyang Li*](https://colinqiyangli.github.io/),
 [Haozhi Qi*](https://haozhi.io/),
-[Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/),
 [Brent Yi](https://scholar.google.com/citations?user=Ecy6lXwAAAAJ&hl=en),
+[Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/),
 [Jitendra Malik](https://people.eecs.berkeley.edu/~malik/)
 <br>
 
