@@ -1,0 +1,6 @@
+*/__pycache__/
+*.pyc
+*.pkl
+*.pth
+*.zip
+*.DS_Store

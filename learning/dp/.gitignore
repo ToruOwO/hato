@@ -1,0 +1,7 @@
+model
+eval
+__pycache__
+*.sh
+*.yml
+eval
+runs
