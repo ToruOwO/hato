@@ -79,7 +79,7 @@ Node processes can be cleaned up by running `pkill -9 -f launch_nodes.py`.
 
 [[Data Files](https://berkeley.app.box.com/s/379cf57zqm1akvr00vdcloxqxi3ucb9g?sortColumn=name&sortDirection=ASC)]
 
-The linked data folder contains datasets for the four tasks featured in [the HATO paper](): `banana`, `stack`, `pour`, and `steak`. Scripts to download the datasets can be found in `workflow/download_dataset.sh`.
+The linked data folder contains datasets for the four tasks featured in [the HATO paper](): `banana`, `stack`, `pour`, and `steak`.
 
 Full dataset files can be unzipped using the `unzip` command.
 Note that the `pour` and `steak` datasets are split into part files because of the large file size. Before unzipping, the part files should be first concatenated back into single files using the following commands:
@@ -88,11 +88,13 @@ cat data_pour_part_0* > data_pour.zip
 cat data_steak_part_0* > data_steak.zip
 ```
 
+Scripts to download and concatenate the datasets can be found in `workflow/download_dataset.sh`.
+
 ### Run Training
 
 1. Run `python workflow/split_data.py --base_path Traj_Folder_Path --output_path Output_Folder_Path --data_name Data_Name --num_trajs N1 N2 N3` to split the data into train and validation sets. Number of trajectories used can be specified via the `num_trajs` argument.
 2. Run `python ./learning/dp/pipeline.py --data_path Split_Folder_Path/Data_Name --model_save_path Model_Path` to train the model, where
-    - `--data_path` is the splited trajectory folder, which is the output_path + data_name in step 1. (data_name should not include suffix like `_train` or `_train_10`)
+    - `--data_path` is the splitted trajectory folder, which is the output_path + data_name in step 1. (data_name should not include suffix like `_train` or `_train_10`)
     - `--model_save_path` is the path to save the model
 
 Important Training Arguments
