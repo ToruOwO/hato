@@ -1,8 +1,7 @@
 # 🕊️ HATO: Learning Visuotactile Skills with Two Multifingered Hands
 
 [[Project](https://toruowo.github.io/hato/)]
-[[Paper]()]
-[[Video]()]
+[[Paper](https://arxiv.org/abs/2404.16823)]
 
 [Toru Lin](https://toruowo.github.io/),
 [Yu Zhang*](),
