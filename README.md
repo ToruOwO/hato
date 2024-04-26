@@ -13,8 +13,6 @@
 [Jitendra Malik](https://people.eecs.berkeley.edu/~malik/)
 <br>
 
-TODO (Optional): Teaser Video / Image
-
 ## Overview
 
 This repo contains code, datasets, and instructions to support the following use cases:
