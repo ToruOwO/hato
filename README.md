@@ -43,7 +43,7 @@ Our data collection code is structured in the following way (credit to [gello_so
 | cameras/ | contains Camera classes that provide utilities to obtain real-time camera data |
 | robots/ | contains Robot classes that interface between Python code and physical hardwares to read observations or send low-level control commands |
 | *_node.py | contains ZMQ node classes for camera / robot / policy |
-| env.py | contains environment classes that organize the teloperation and data collection process |
+| env.py | contains environment classes that organize the teleoperation and data collection process |
 | launch_nodes.py | script to launch robot hardware and sensor ZMQ nodes |
 | run_env.py | script to start the teleoperation and data collection process |
 
