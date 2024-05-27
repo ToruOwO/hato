@@ -3,9 +3,12 @@ from typing import Dict
 import numpy as np
 import quaternion
 from dm_control import mjcf
-from dm_control.utils.inverse_kinematics import qpos_from_site_pose, velocity_ik
+from dm_control.mujoco.wrapper import mjbindings
+from dm_control.utils.inverse_kinematics import qpos_from_site_pose, nullspace_method
 from oculus_reader.reader import OculusReader
 from agents.agent import Agent
+
+mjlib = mjbindings.mjlib
 
 mj2ur = np.array([[0, -1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
 ur2mj = np.linalg.inv(mj2ur)
@@ -40,6 +43,45 @@ ur2right = np.array(
     ]
 )
 ur2quest = np.linalg.inv(quest2ur)
+
+
+def velocity_ik(physics,
+    site_name,
+    delta_rot_mat,
+    delta_pos,
+    joint_names):
+
+  dtype = physics.data.qpos.dtype
+
+  # Convert site name to index.
+  site_id = physics.model.name2id(site_name, 'site')
+
+
+  jac = np.empty((6, physics.model.nv), dtype=dtype)
+  err = np.zeros(6, dtype=dtype)
+  jac_pos, jac_rot = jac[:3], jac[3:]
+  err_pos, err_rot = err[:3], err[3:]
+
+  err_pos[:] = delta_pos[:]
+
+  delta_rot_quat = np.empty(4, dtype=dtype)
+  mjlib.mju_mat2Quat(delta_rot_quat, delta_rot_mat)
+  mjlib.mju_quat2Vel(err_rot, delta_rot_quat, 1)
+
+  mjlib.mj_jacSite(
+      physics.model.ptr, physics.data.ptr, jac_pos, jac_rot, site_id)
+
+  dof_indices = []
+  for jn in joint_names:
+    dof_idx = physics.model.joint(jn).id
+    dof_indices.append(dof_idx)
+
+  jac_joints = jac[:, dof_indices]
+
+  update_joints = nullspace_method(
+      jac_joints, err, regularization_strength=0.03)
+
+  return update_joints
 
 
 class SingleArmQuestAgent(Agent):
